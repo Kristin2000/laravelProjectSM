@@ -14,7 +14,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+
+        $posts = Post::latest()->paginate(10);
+    
+        return view('posts.index',compact('posts'))
+
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -35,7 +40,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required',
+        ]);    
+
+        Post::create($request->all());     
+
+        return redirect()->route('posts.index')
+        ->with('success','Product created successfully.');
+
     }
 
     /**
