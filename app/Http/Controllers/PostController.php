@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::latest()->paginate(10);
+        $posts = Post::latest()->paginate(6);
     
         return view('posts.index',compact('posts'))
 
@@ -39,13 +39,23 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
         $request->validate([
             'title' => 'required',
-            'text' => 'required',
-        ]);    
+            'userID' => 'userID',
+            'text' => 'required'
+        ]);   
+        
+        $post = new Post([
+            "title" => $request->get("title"),
+            "userID" => "123",
+            "username" => "Luksa",
+            "text" => $request->get("text")
+        ]);
 
-        Post::create($request->all());     
+        $post->save();
+
+        // Post::create($request->all());     
 
         return redirect()->route('posts.index')
         ->with('success','Product created successfully.');

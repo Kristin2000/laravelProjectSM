@@ -27,57 +27,39 @@
     <body class="antialiased">
         <h1>Willkommen</h1>
 
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
+    @if ($message = Session::get('success'))
 
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
     </div>
 
-</div>
-</div>
+    @endif
 
-@if ($message = Session::get('success'))
+    <div class=row>
+        <div class="col offset-10">
+            <a class="btn btn-info rounded-circle py-2 mb-4" href="{{ route('posts.create') }}"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+            </svg></a>
+        </div>
+    </div>
 
-<div class="alert alert-success">
+    <table class="table table-bordered">
 
-    <p>{{ $message }}</p>
+    <tr>
+        <th>Titel</th>
+        <th>Text</th>
+    </tr>
 
-</div>
+    @foreach ($posts as $post)
 
-@endif
+    <tr>
+        <td>{{ $post->title }}</td>
+        <td>{{ $post->text }}</td>
+    </tr>
 
-<a class="btn btn-info rounded-circle" href="{{ route('posts.create') }}"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-</svg></a>
-
-
-<table class="table table-bordered">
-
-<tr>
-    <th>Name</th>
-    <th>Details</th>
-</tr>
-
-@foreach ($posts as $post)
-
-<tr>
-    <td>{{ ++$i }}</td>
-    <td>{{ $post->title }}</td>
-    <td>{{ $post->text }}</td>
-    <td>
-        <form action="{{ route('post.destroy',$post->id) }}" method="POST">
-            <a class="btn btn-info" href="{{ route('post.show',$post->id) }}">Show</a>
-            <a class="btn btn-primary" href="{{ route('post.edit',$post->id) }}">Edit</a>
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    </td>
-</tr>
-
-@endforeach
-</table>
-{!! $posts->links() !!}
+    @endforeach
+    </table>
+    {!! $posts->links() !!}
     </body>
 </html>
 @endsection
