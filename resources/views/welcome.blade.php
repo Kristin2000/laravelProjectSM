@@ -27,7 +27,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
- 
+
                 background-color: #EAEFF5;
                 border: 2px solid black;
                 border-radius: 4%;
@@ -36,7 +36,8 @@
     </head>
 
     <body class="antialiased">
-        <!-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+        
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -51,13 +52,13 @@
                 </div>
             @endif
 
-            Shortcut to comment: ctrl + K + C; uncomment: ctrl + K + U -->
+            <!-- Shortcut to comment: ctrl + K + C; uncomment: ctrl + K + U -->
 
             <div class="centered_box">
                 <h1 class="mt-4">Willkommen bei <br></br> Daily Thoughts</h1>
                 </br>
                 <a class="btn btn-secondary" width="300px" role="button" href="./index">Index</a>
-                    <!-- wird später Login 
+                    <!-- wird später Login
                         <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div> -->

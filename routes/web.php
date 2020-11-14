@@ -23,3 +23,7 @@ Route::resource('posts', PostController::class);
 Route::get('index', [PostController::class, "index"]);
 
 Route::get('create', [PostController::class, "create"]);
+
+Route::get('edit', [PostController::class, "edit"]);
+
+

@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::latest()->paginate(6);
+        $posts = Post::latest()->simplePaginate(5);
     
         return view('posts.index',compact('posts'))
 
@@ -42,7 +42,6 @@ class PostController extends Controller
     {        
         $request->validate([
             'title' => 'required',
-            'userID' => 'userID',
             'text' => 'required'
         ]);   
         
@@ -79,9 +78,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit', compact("post", "id"));
     }
 
     /**
