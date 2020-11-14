@@ -57,7 +57,13 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->text }}</td>
                         <td><a class="btn btn-info" href="{{ route('posts.edit', $post['id']) }}">Edit</a></td>
-                        <td><a class="btn btn-warning" href="{{ route('posts.delete', $post['id']) }}">Edit</a></td>
+                        <td>
+                            <form action="{{ route ('posts.destroy', $post->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 </table>
             </div>

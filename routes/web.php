@@ -26,4 +26,6 @@ Route::get('create', [PostController::class, "create"]);
 
 Route::get('edit', [PostController::class, "edit"]);
 
+Route::get('update', [PostController::class, "update"]);
+
 

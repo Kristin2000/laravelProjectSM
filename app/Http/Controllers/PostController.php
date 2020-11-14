@@ -57,7 +57,7 @@ class PostController extends Controller
         // Post::create($request->all());     
 
         return redirect()->route('posts.index')
-        ->with('success','Product created successfully.');
+                ->with('success','Product created successfully.');
 
     }
 
@@ -91,9 +91,22 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required'
+        ]); 
+
+        $post = Post::find($id);
+
+        $post->title = $request->get('title');
+        $post->text = $request->get('text');
+
+        $post->save();
+
+        return redirect()->route('posts.index')
+                ->with('success','Post updated successfully');
     }
 
     /**
@@ -102,8 +115,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();    
+
+        return redirect()->route('posts.index')
+                ->with('success','Post deleted successfully');
     }
 }

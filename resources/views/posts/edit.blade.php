@@ -30,8 +30,9 @@
     <body>
         <div class="container">
 
-            <form  method="post">
+            <form action="{{ route ('posts.update', $post->id) }}" method="post">
             @csrf
+            @method('PUT')
                 <div class="row">
                     <div class="col-6 offset-3">
                         <div class="form-group">
