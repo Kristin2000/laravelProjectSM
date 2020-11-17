@@ -29,3 +29,6 @@ Route::get('edit', [PostController::class, "edit"]);
 Route::get('update', [PostController::class, "update"]);
 
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

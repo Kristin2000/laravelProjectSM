@@ -35,29 +35,28 @@
         </style>
     </head>
 
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endif
+    <body class="container">
+        <div class="centered_box">
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h1 class="mt-4">Willkommen bei "Daily Thoughts"</h1>
                 </div>
-            @endif
-
-            <!-- Shortcut to comment: ctrl + K + C; uncomment: ctrl + K + U -->
-
-            <div class="centered_box">
-                <h1 class="mt-4">Willkommen bei <br></br> Daily Thoughts</h1>
-                </br>
-                <a class="btn btn-secondary" width="300px" role="button" href="./index">Index</a>
+            </div>
+            <div class="row mx-4 ">
+                <div class="col-12">
+                    <a class="btn btn-secondary my-3 btn-block btn-lg" role="button" href="{{ route('login') }}">Login</a>
+                </div>
+            </div>
+            <div class="row mx-4 ">
+                <div class="col-12">
+                    <a class="btn btn-secondary my-3 btn-block btn-lg" role="button" href="{{ route('register') }}">Registrierung</a>
+                </div>                
+            </div>
+            <div class="row mx-4 ">
+                <div class="col-12">
+                    <a class="btn btn-secondary my-3 btn-block btn-lg" role="button" href="./index">Index</a>
+                </div> 
+            </div>
                     <!-- wird später Login
                         <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
