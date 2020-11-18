@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,14 @@ Route::get('create', [PostController::class, "create"]);
 Route::get('edit', [PostController::class, "edit"]);
 
 Route::get('update', [PostController::class, "update"]);
+
+
+Route::resource('comments', CommentController::class);
+
+Route::get('comment/create', [CommentController::class, "create"]);
+
+Route::get('comment/edit', [CommentController::class, "edit"]);
+
 
 
 Auth::routes();

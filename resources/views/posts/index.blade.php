@@ -58,6 +58,9 @@
                                 <button class="btn btn-danger" type="submit">Löschen</button>
                             </form>
                         </td>
+                        <td>
+                            <a class="btn btn-success" href="{{ route('comments.show', $post->id) }}">Kommentieren</a>                    
+                        </td>
                     </tr>
                 </table>
             </div>
