@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('posts.header')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Du bist eingeloggt!') }}
                 </div>
             </div>
         </div>

@@ -54,7 +54,7 @@
             </div>
             <div class="row mx-4 ">
                 <div class="col-12">
-                    <a class="btn btn-secondary my-3 btn-block btn-lg" role="button" href="./index">Index</a>
+                    <a class="btn btn-secondary my-3 btn-block btn-lg" role="button" href="./index">Als Gast fortfahren</a>
                 </div> 
             </div>
                     <!-- wird später Login

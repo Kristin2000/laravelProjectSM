@@ -36,6 +36,12 @@
 
             <div class="row">                
                 <table class="table table-bordered">
+
+                    <tr>
+                        <td>{{ $post->username }}</td>
+                        <td>{{ $post->created_at->format('H:i d.m.Y') }}</td>                    
+                    </tr>
+
                     <tr>
                         <th width="150px">Titel</th>
                         <th width="400px">Text</th>
@@ -44,12 +50,12 @@
                     <tr>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->text }}</td>
-                        <td><a class="btn btn-info" href="{{ route('posts.edit', $post['id']) }}">Edit</a></td>
+                        <td><a class="btn btn-info" href="{{ route('posts.edit', $post['id']) }}">Bearbeiten</a></td>
                         <td>
                             <form action="{{ route ('posts.destroy', $post->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-danger" type="submit">Löschen</button>
                             </form>
                         </td>
                     </tr>

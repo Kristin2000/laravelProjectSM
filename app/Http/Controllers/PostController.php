@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -44,11 +46,14 @@ class PostController extends Controller
             'title' => 'required',
             'text' => 'required'
         ]);   
+
+        $id = Auth::id();
+        $user = User::find($id)->getOriginal();
         
         $post = new Post([
             "title" => $request->get("title"),
-            "userID" => "123",
-            "username" => "Luksa",
+            "userID" => $id,
+            "username" => $user["name"],
             "text" => $request->get("text")
         ]);
 
@@ -57,7 +62,7 @@ class PostController extends Controller
         // Post::create($request->all());     
 
         return redirect()->route('posts.index')
-                ->with('success','Product created successfully.');
+               ->with('success','Erfolgreich gepostet!');
 
     }
 
@@ -106,7 +111,7 @@ class PostController extends Controller
         $post->save();
 
         return redirect()->route('posts.index')
-                ->with('success','Post updated successfully');
+                ->with('success','Post erfolgreich geupdated.');
     }
 
     /**
@@ -121,6 +126,6 @@ class PostController extends Controller
         $post->delete();    
 
         return redirect()->route('posts.index')
-                ->with('success','Post deleted successfully');
+                ->with('success','Post wurde gelöscht.');
     }
 }
