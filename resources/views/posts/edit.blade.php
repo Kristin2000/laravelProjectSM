@@ -31,7 +31,7 @@
                             <textarea class="form-control" rows="5" id="txtar" maxlength="260" name="text" style="resize:none">{{$post->text}}</textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-secondary btn-lg">Edit</button>
+                        <button type="submit" class="btn btn-secondary btn-lg">Update</button>
                     </div>        
                 </div>  
             </form>  

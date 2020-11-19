@@ -18,7 +18,7 @@
     @csrf
         <div class="row">
             <div class="col-6 offset-3">
-                        
+                
                 <div class="form-group">
                     <label for="txtar"><strong>Kommentar</strong></label>
                     <textarea class="form-control" rows="6" id="txtar" maxlength="300" placeholder="Was möchtest du anmerken?" name="text" style="resize:none"></textarea>

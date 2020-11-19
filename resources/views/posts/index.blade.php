@@ -48,24 +48,25 @@
                         <th width="160px">{{ $post->title }}</th>
                         <td width="400px">{{ $post->text }}</td>
 
-                        @if ( null !== ( Auth::user() ) && $post->userID == Auth::user()->id || Auth::user()->id == 1)
-                        <td><a class="btn btn-info" href="{{ route('posts.edit', $post['id']) }}">Bearbeiten</a></td>
-                        <td>
+                        @if ( null !== ( Auth::user() ))
+                        <td width="300px">
                             <form action="{{ route ('posts.destroy', $post->id) }}" method="post">
+                            
+                            @if ( $post->userID == Auth::user()->id || Auth::user()->id == 1)                            
+                                <a class="btn btn-info" href="{{ route('posts.edit', $post['id']) }}">Bearbeiten</a>  
+
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Löschen</button>
+                            @endif
+                            
+                                <a class="btn btn-success" href="{{ route('comments.show', $post->id) }}">Kommentieren</a>                                                        
                             </form>
                         </td>
                         @endif
                     </tr> 
-                    @if ( null !== ( Auth::user() ))
-                    <tr>
-                        <td>
-                            <a class="btn btn-success" href="{{ route('comments.show', $post->id) }}">Kommentieren</a>                    
-                        </td>                                           
-                    </tr>
-                    @endif
+
+                    
                 </table>
             </div>
 
