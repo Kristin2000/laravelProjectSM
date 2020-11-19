@@ -38,6 +38,12 @@ Route::get('comment/edit', [CommentController::class, "edit"]);
 
 Route::post('/comments', 'App\Http\Controllers\CommentController@store');
 
+Route::post('/getcomments', 'App\Http\Controllers\CommentController@index');
+
+Route::get('ajax',function() {
+    return view('message');
+});
+
 
 Auth::routes();
 

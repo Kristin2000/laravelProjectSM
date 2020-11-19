@@ -1,6 +1,10 @@
 @extends("posts.header")
 
 @section('content')
+    <head>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    </head>
+
     <!-- Styles -->
     <style>
         body {
@@ -66,37 +70,58 @@
                             </form>
                         </td>
                         @endif
-                    </tr>   
-                    <tr>
-                        <a data-post="{{$post['id']}}" id="post">Kommentare anzeigen</a>
                     </tr>                  
                 </table>
+                <p>
+                        <a data-post="{{$post['id']}}" class="post" id="toggle{{$post['id']}}" style="text-decoration: none">Kommentare anzeigen</a>
+                    </p>   
             </div>
 
-            @foreach ($comments as $comment)
-                @if( $post->id === $comment['postID'])
-
-                <div class="row">
-                    <p>{{ $comment['text'] }}</p>
-                    @if ( null !== ( Auth::user() ))
-                        @if ( $comment['userID'] == Auth::user()->id || Auth::user()->id === 1)
-
-                        <form action="{{ route ('comments.destroy', $comment['id']) }}" method="post">                         
-
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Löschen</button>
-                                                                        
-                        </form>
-                        @endif
-                    @endif
-                    </br>
-                </div>
-
-                @endif
-            @endforeach
+            <div id="comments{{ $post['id'] }}" style="display: none">
+            </div>
 
             @endforeach
+
 
             {{ $posts->links() }}
+
+        <script type="text/javascript">
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $( document ).ready(function() {
+                $(".post").on("click", function () {
+                    var postID = $( this ).data( "post" );
+
+                    if ($("#comments" + postID).css("display") == "none") {
+                        $("#comments" + postID).css("display", "block");
+                        $("#toggle" + postID).html("Kommentare verbergen");
+                    } else {
+                        $("#comments" + postID).css("display", "none");
+                        $("#toggle" + postID).html("Kommentare anzeigen");
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/getcomments',
+                        data: '_token =  {{csrf_token()}}',
+                              
+                        success: function (data) {
+                            var comments = JSON.parse(data);
+                            $("#comments" + postID).html('');
+                            comments.forEach ((comment, index) => {
+                                if(comment['postID'] == postID) {
+                                    $("#comments" + postID).append(comment['text']);
+                                }                       
+    
+                            });
+                        }
+                    });                
+                });
+            });
+        </script>
 @endsection

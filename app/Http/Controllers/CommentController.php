@@ -17,6 +17,8 @@ class CommentController extends Controller
      */
     public function index()
     {
+        $comments = Comment::all()->toArray();
+        echo json_encode($comments);
         //return view('comments.create');
     }
 
