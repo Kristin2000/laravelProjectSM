@@ -73,21 +73,30 @@
             @foreach ($comments as $comment)
                 @if( $post->id === $comment['postID'])
 
-                <div class="row">
-                    <p>{{ $comment['text'] }}</p>
-                    @if ( null !== ( Auth::user() ))
-                        @if ( $comment['userID'] == Auth::user()->id || Auth::user()->id === 1)
+                <div class="row mb-2">
+                    <table class="table">
+                        <tr>
+                            <th>Kommentare</th>
+                        </tr>
+                        <tr>
+                            <td>{{ $comment['text'] }}</td>
+                            <td>
+                                @if ( null !== ( Auth::user() ))
+                                    @if ( $comment['userID'] == Auth::user()->id || Auth::user()->id === 1)
 
-                        <form action="{{ route ('comments.destroy', $comment['id']) }}" method="post">                         
+                                    <form action="{{ route ('comments.destroy', $comment['id']) }}" method="post">                         
 
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Löschen</button>
-                                                                        
-                        </form>
-                        @endif
-                    @endif
-                    </br>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-outline-danger btn-sm" type="submit">Löschen</button>
+                                                                                    
+                                    </form>
+                                    @endif
+                                @endif
+                                </br>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
                 @endif
