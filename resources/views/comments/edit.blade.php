@@ -21,10 +21,10 @@
                         
                 <div class="form-group">
                     <label for="txtar"><strong>Kommentar</strong></label>
-                    <textarea class="form-control" rows="6" id="txtar" maxlength="300" name="text" style="resize:none">{{$comment->text}}</textarea>
+                    <textarea class="form-control" rows="6" id="txtar" maxlength="300" name="text" style="resize:none">{{$comment['text']}}</textarea>
                 </div>
 
-                <button type="submit" class="btn btn-secondary btn-lg">Post {{$postID}}</button>
+                <button type="submit" class="btn btn-secondary btn-lg" name="post" value="{{ $postID }}">Update</button>
             </div>        
         </div>  
     </form>  

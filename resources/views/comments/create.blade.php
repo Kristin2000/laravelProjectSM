@@ -14,7 +14,7 @@
 </style>
 
 <div class="container">
-    <form action="{{ url('comments') }}" method="post">
+    <form action="/comments" method="post">
     @csrf
         <div class="row">
             <div class="col-6 offset-3">
@@ -24,7 +24,7 @@
                     <textarea class="form-control" rows="6" id="txtar" maxlength="300" placeholder="Was möchtest du anmerken?" name="text" style="resize:none"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-secondary btn-lg">Post {{$postID}}</button>
+                <button type="submit" class="btn btn-secondary btn-lg" name="post" value="{{ $postID }}">Kommentieren</button>
             </div>        
         </div>  
     </form>  

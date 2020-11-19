@@ -38,12 +38,14 @@
 
             @foreach ($posts as $post)
 
-            <div class="row">                
+            <div class="row"> 
+
+                <div class="clearfix">
+                    <div class="pull-left"><strong>{{ $post->username }}</strong></div>
+                    <div class="pull-right">{{ $post->created_at->format('H:i d.m.Y') }}</div>
+                </div>               
+
                 <table class="table table-bordered">
-                    <tr>
-                        <td>{{ $post->username }}</td>
-                        <td>{{ $post->created_at->format('H:i d.m.Y') }}</td>                    
-                    </tr>
                     <tr>
                         <th width="160px">{{ $post->title }}</th>
                         <td width="400px">{{ $post->text }}</td>
@@ -52,7 +54,7 @@
                         <td width="300px">
                             <form action="{{ route ('posts.destroy', $post->id) }}" method="post">
                             
-                            @if ( $post->userID == Auth::user()->id || Auth::user()->id == 1)                            
+                            @if ( $post->userID == Auth::user()->id || Auth::user()->id === 1)                            
                                 <a class="btn btn-info" href="{{ route('posts.edit', $post['id']) }}">Bearbeiten</a>  
 
                                 @csrf
@@ -64,11 +66,35 @@
                             </form>
                         </td>
                         @endif
-                    </tr> 
-
-                    
+                    </tr>   
+                    <tr>
+                        <a data-post="{{$post['id']}}" id="post">Kommentare anzeigen</a>
+                    </tr>                  
                 </table>
             </div>
+
+            @foreach ($comments as $comment)
+                @if( $post->id === $comment['postID'])
+
+                <div class="row">
+                    <p>{{ $comment['text'] }}</p>
+                    @if ( null !== ( Auth::user() ))
+                        @if ( $comment['userID'] == Auth::user()->id || Auth::user()->id === 1)
+
+                        <form action="{{ route ('comments.destroy', $comment['id']) }}" method="post">                         
+
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Löschen</button>
+                                                                        
+                        </form>
+                        @endif
+                    @endif
+                    </br>
+                </div>
+
+                @endif
+            @endforeach
 
             @endforeach
 

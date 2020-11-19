@@ -36,6 +36,7 @@ Route::get('comment/create', [CommentController::class, "create"]);
 
 Route::get('comment/edit', [CommentController::class, "edit"]);
 
+Route::post('/comments', 'App\Http\Controllers\CommentController@store');
 
 
 Auth::routes();

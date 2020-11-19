@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,10 +17,10 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        $comments = Comment::all()->toArray();
         $posts = Post::latest()->simplePaginate(5);
     
-        return view('posts.index',compact('posts'))
+        return view('posts.index',compact('posts', 'comments'))
 
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

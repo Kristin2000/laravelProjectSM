@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,21 +42,19 @@ class CommentController extends Controller
             'text' => 'required'
         ]);   
 
-        $userid = Auth::id();
-        $user = User::find($userid)->getOriginal();
-        
+        $userid = Auth::id();     
         
         $comment = new Comment([
             "userID" => $userid,
-            "postID" => $postid,
+            "postID" => $request->input("post"),
             "text" => $request->get("text")
         ]);
 
         $comment->save();
 
+             
         return redirect()->route('posts.index')
-               ->with('success','Erfolgreich kommentiert!');
-
+                ->with('success', 'Erfolgreich kommentiert!'); 
     }
 
     /**
