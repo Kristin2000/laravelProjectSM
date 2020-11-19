@@ -12,7 +12,11 @@
     </style>
 
         <div class="row justify-content-center">
+            @if (null !== ( Auth::user() ))
+            <h1>Willkommen  {{ Auth::user()->name }}!</h1>
+            @else
             <h1>Willkommen</h1>
+            @endif
         </div>
 
             @if ($message = Session::get('success'))
@@ -36,20 +40,15 @@
 
             <div class="row">                
                 <table class="table table-bordered">
-
                     <tr>
                         <td>{{ $post->username }}</td>
                         <td>{{ $post->created_at->format('H:i d.m.Y') }}</td>                    
                     </tr>
-
                     <tr>
-                        <th width="150px">Titel</th>
-                        <th width="400px">Text</th>
-                    </tr>    
+                        <th width="160px">{{ $post->title }}</th>
+                        <td width="400px">{{ $post->text }}</td>
 
-                    <tr>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->text }}</td>
+                        @if ( null !== ( Auth::user() ) && $post->userID == Auth::user()->id || Auth::user()->id == 1)
                         <td><a class="btn btn-info" href="{{ route('posts.edit', $post['id']) }}">Bearbeiten</a></td>
                         <td>
                             <form action="{{ route ('posts.destroy', $post->id) }}" method="post">
@@ -58,10 +57,15 @@
                                 <button class="btn btn-danger" type="submit">Löschen</button>
                             </form>
                         </td>
+                        @endif
+                    </tr> 
+                    @if ( null !== ( Auth::user() ))
+                    <tr>
                         <td>
                             <a class="btn btn-success" href="{{ route('comments.show', $post->id) }}">Kommentieren</a>                    
-                        </td>
+                        </td>                                           
                     </tr>
+                    @endif
                 </table>
             </div>
 

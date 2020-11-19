@@ -57,8 +57,7 @@
                     <a class="btn btn-secondary my-3 btn-block btn-lg" role="button" href="./index">Als Gast fortfahren</a>
                 </div> 
             </div>
-                    <!-- wird später Login
-                        <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                    <!-- <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div> -->
             </div>
