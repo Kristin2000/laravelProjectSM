@@ -66,9 +66,6 @@
                             </form>
                         </td>
                         @endif
-                    </tr>   
-                    <tr>
-                        <a data-post="{{$post['id']}}" id="post">Kommentare anzeigen</a>
                     </tr>                  
                 </table>
             </div>

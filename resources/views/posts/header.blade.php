@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 @if (Request::url() === "http://laravelprojectsm.local/posts" || Request::url() === "http://laravelprojectsm.local/index") 
-                    <a class="navbar-brand" href="{{ url('/') }}"><h3>Daily Thoughts</h3></a>
+                    <h3>Daily Thoughts</h3>
                 @else
                     <a class="btn btn-outline-secondary" href="{{ route('posts.index') }}">Zu den Posts</a>
                 @endif  
