@@ -11,6 +11,7 @@
         }
     </style>
 
+        <!-- Personalisierte Begrüßung -->
         <div class="row justify-content-center">
             @if (null !== ( Auth::user() ))
             <h1>Willkommen  {{ Auth::user()->name }}!</h1>
