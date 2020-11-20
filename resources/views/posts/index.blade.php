@@ -69,18 +69,28 @@
                     </tr>                  
                 </table>
             </div>
+            <div class="row">
+                <div class="col">
+                    <p class="offset-2"><strong>Kommentare</strong></p>
+                <div>
+            </div>
 
             @foreach ($comments as $comment)
                 @if( $post->id === $comment['postID'])
 
-                <div class="row mb-2">
+                <div class="row mb-2 offset-2">
                     <table class="table">
                         <tr>
-                            <th>Kommentare</th>
-                        </tr>
-                        <tr>
-                            <td>{{ $comment['text'] }}</td>
-                            <td>
+                            <td width="160px">{{ DB::table('users')
+                                    ->join('comments', function($join) use($comment)
+                                    {
+                                        $join->on('users.id', '=', 'comments.userID')
+                                            ->where('comments.id', '=', $comment['id']);
+                                    })
+                                    ->pluck('users.name')->first() }}
+                            </td>
+                            <td width="400px">{{ $comment['text'] }}</td>
+                            <td width="300px">
                                 @if ( null !== ( Auth::user() ))
                                     @if ( $comment['userID'] == Auth::user()->id || Auth::user()->id === 1)
 
