@@ -73,8 +73,8 @@
                     </tr>                  
                 </table>
                 <p>
-                        <a data-post="{{$post['id']}}" class="post" id="toggle{{$post['id']}}" style="text-decoration: none">Kommentare anzeigen</a>
-                    </p>   
+                    <a data-post="{{$post['id']}}" class="post" id="toggle{{$post['id']}}" style="text-decoration: none">Kommentare anzeigen</a>
+                </p>   
             </div>
 
             <div id="comments{{ $post['id'] }}" style="display: none">
